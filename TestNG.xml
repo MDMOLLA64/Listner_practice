@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="KOHLs_WEB">
+	<listeners>
+		<listener class-name="com.bit.test.CustomListener"></listener>
+		<listener class-name="com.bit.test.ExtentReporterNG"></listener>
+	</listeners>
+	<test name="HomePageTest">     
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.bit.test.SmokeTest" />
+
+		</classes>
+
+	</test>
+
+</suite>

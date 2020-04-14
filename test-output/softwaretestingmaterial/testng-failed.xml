@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [softwaretestingmaterial]">
+  <listeners>
+    <listener class-name="com.bit.test.CustomListener"/>
+  </listeners>
+  <test thread-count="5" name="testngTest(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.bit.test.SmokeTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="afterMethod"/>
+          <include name="afterSuite"/>
+          <include name="homePageloader"/>
+          <include name="beforeSuite"/>
+          <include name="afterClass"/>
+          <include name="afterTest"/>
+          <include name="beforeMethod"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- com.bit.test.SmokeTest -->
+    </classes>
+  </test> <!-- testngTest(failed) -->
+</suite> <!-- Failed suite [softwaretestingmaterial] -->

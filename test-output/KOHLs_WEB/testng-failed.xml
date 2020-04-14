@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [KOHLs_WEB]">
+  <listeners>
+    <listener class-name="com.bit.test.CustomListener"/>
+    <listener class-name="com.bit.test.ExtentReporterNG"/>
+  </listeners>
+  <test thread-count="5" name="HomePageTest(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.bit.test.SmokeTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="afterMethod"/>
+          <include name="afterSuite"/>
+          <include name="beforeSuite"/>
+          <include name="afterClass"/>
+          <include name="afterTest"/>
+          <include name="beforeMethod"/>
+          <include name="nevigateUrl"/>
+          <include name="eshopper2"/>
+        </methods>
+      </class> <!-- com.bit.test.SmokeTest -->
+    </classes>
+  </test> <!-- HomePageTest(failed) -->
+</suite> <!-- Failed suite [KOHLs_WEB] -->

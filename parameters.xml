@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="softwaretestingmaterial" parallel="methods">
+	<listeners>
+		<listener class-name="com.bit.test.CustomListener" />
+	</listeners>
+	<test name="testngTest">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.bit.test.SmokeTest" />
+		</classes>
+	</test>
+</suite>
