@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -19,7 +20,9 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -27,6 +30,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import kohls.utility.ReadPropFile;
 import kohls.utility.TakeAutoScreenshot;
+import pages.HomePage;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
@@ -35,34 +39,43 @@ import org.testng.annotations.AfterSuite;
 public class BaseTest {
 
 	public static WebDriver driver;
+//public static Logger logger;
 	Properties prop;
+
 	public ExtentReports extent;
 	public ExtentTest extentTest;
-	public static Logger log;
 
-	@BeforeTest
+	// @BeforeTest
 	public void setExtent() {
-		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/ExtentReport.html", true);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/extentReport.html", true);
+		// extent = new ExtentReports(System.getProperty("user.dir") +
+		// "/test-output/AutomationReport.html", true); //
 		extent.addSystemInfo("Host Name", "Mds-MacBook-Pro.home");
 		extent.addSystemInfo("User Name", "mdmolla");
 		extent.addSystemInfo("Environment", "QA");
-
 	}
 
-	@Parameters("browser") // String browser
-	@BeforeClass
 	@BeforeMethod
-	public void setUp() throws IOException {
+	public void setUp() {
 
-		log = Logger.getLogger(BaseTest.class.getName());
-		DOMConfigurator.configure("log4j.xml");
+//		logger = Logger.getLogger(BaseTest.class);
+//		DOMConfigurator.configure("log4j.xml");
 
-		prop = ReadPropFile.ReadFile("/Users/mdmolla/eclipse-workspace/TestNgwithSelenium/conFig.properties");
+		try {
+			prop = ReadPropFile.ReadFile("/Users/mdmolla/eclipse-workspace/TestNgwithSelenium/conFig.properties");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// logger.info("Property file reading");
+
 		String browser = prop.getProperty("browser");
 		// String browser =System.getProperty("browser");
+		// logger.info("got the browser name from Property file ");
 		if (browser.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver", "/Users/mdmolla/Downloads/chromedriver");
 			driver = new ChromeDriver();
+			// logger.info(browser + " browser is open");
 		} else if (browser.equals("FireFox")) {
 			System.setProperty("webdriver.geko.driver", "");
 			driver = new FirefoxDriver();
@@ -85,33 +98,40 @@ public class BaseTest {
 		}
 
 		driver.get(prop.getProperty("url"));
+		// logger.info("landed into HomePage");
 		// driver.manage().window().maximize();
 
 	}
 
-	//@AfterMethod
-	public void teaDown(ITestResult result) throws InterruptedException, IOException {
+	@AfterMethod
+	public void tearDown(ITestResult result) throws InterruptedException, IOException {
 		switch (result.getStatus()) {
 		case ITestResult.FAILURE: {
+
+		
+			String screenshotPath = TakeAutoScreenshot.getScreenshot(driver, result.getMethod().getMethodName());
+
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
 			TakeAutoScreenshot.getScreenshot(driver, result.getMethod().getMethodName());
 		}
 		case ITestResult.SKIP: {
-			String SkippedMethods = result.getMethod().getMethodName();
-			log.info(SkippedMethods);
+			
+			extentTest.log(LogStatus.SKIP, result.getMethod().getMethodName());
+			//String SkippedMethods = result.getMethod().getMethodName();
+
 		}
 		case ITestResult.SUCCESS: {
+	
 			String Successmethods = result.getMethod().getMethodName();
-			log.info(Successmethods);
 
 		}
 
+			extent.endTest(extentTest);
+
+			Thread.sleep(5000);
+			driver.quit();
+
 		}
-
-	}
-
-	@AfterClass
-	public void afterClass() throws InterruptedException {
-
 	}
 
 	@AfterTest
@@ -126,6 +146,7 @@ public class BaseTest {
 
 	@AfterSuite
 	public void afterSuite() {
+
 	}
 
 }

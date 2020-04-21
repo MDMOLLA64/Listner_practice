@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [smoke]">
+  <listeners>
+    <listener class-name="com.bit.test.CustomListener"/>
+    <listener class-name="com.bit.test.ExtentReporterNG"/>
+  </listeners>
+  <test thread-count="5" name="common(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.bit.test.SmokeTest">
+        <methods>
+          <include name="setExtent"/>
+          <include name="setUp"/>
+          <include name="afterSuite"/>
+          <include name="homePageloader"/>
+          <include name="beforeSuite"/>
+          <include name="tearDown"/>
+          <include name="endReport"/>
+          <include name="afterClass"/>
+          <include name="readpropery"/>
+        </methods>
+      </class> <!-- com.bit.test.SmokeTest -->
+    </classes>
+  </test> <!-- common(failed) -->
+  <test thread-count="5" name="mac(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.bit.test.LogInTest">
+        <methods>
+          <include name="setExtent"/>
+          <include name="setUp"/>
+          <include name="afterSuite"/>
+          <include name="LogInTest001"/>
+          <include name="beforeSuite"/>
+          <include name="tearDown"/>
+          <include name="endReport"/>
+          <include name="afterClass"/>
+          <include name="readpropery"/>
+        </methods>
+      </class> <!-- com.bit.test.LogInTest -->
+    </classes>
+  </test> <!-- mac(failed) -->
+</suite> <!-- Failed suite [smoke] -->

@@ -1,0 +1,43 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="smoke" parallel="false">
+	<!-- if parallel=false means crossbrowsing //parallel =testsor methods, 
+		or class then parallel -->
+	<listeners>
+		<listener class-name="com.bit.test.CustomListener"></listener>
+		<listener class-name="com.bit.test.ExtentReporterNG"></listener>
+	</listeners>
+
+	<test name="common">
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="com.bit.test.SmokeTest">
+				<methods>
+					<include name="homePageloader"></include>
+
+				</methods>
+			</class>
+		</classes>
+
+
+	</test>
+	<test name="mac">
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="com.bit.test.LogInTest">
+				<methods>
+					<include name="LogInTest001"></include>
+
+				</methods>
+			</class>
+		</classes>
+
+	</test>
+
+
+
+
+
+
+
+
+</suite>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Failed suite [Failed suite [Failed suite [Default suite]]]]">
+  <test thread-count="5" name="Default test(failed)(failed)(failed)(failed)">
+    <classes>
+      <class name="com.bit.test.SmokeTest">
+        <methods>
+          <include name="setExtent"/>
+          <include name="setUp"/>
+          <include name="afterSuite"/>
+          <include name="homePageloader"/>
+          <include name="beforeSuite"/>
+          <include name="functionalTest"/>
+          <include name="tearDown"/>
+          <include name="LigIn_001"/>
+          <include name="designTest"/>
+          <include name="endReport"/>
+          <include name="afterClass"/>
+          <include name="readpropery"/>
+        </methods>
+      </class> <!-- com.bit.test.SmokeTest -->
+    </classes>
+  </test> <!-- Default test(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Default suite]]]] -->

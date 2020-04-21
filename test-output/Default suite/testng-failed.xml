@@ -5,16 +5,12 @@
     <classes>
       <class name="com.bit.test.SmokeTest">
         <methods>
-          <include name="setExtent"/>
           <include name="setUp"/>
           <include name="afterSuite"/>
           <include name="homePageloader"/>
           <include name="beforeSuite"/>
+          <include name="tearDown"/>
           <include name="endReport"/>
-          <include name="afterClass"/>
-          <include name="eshopper3"/>
-          <include name="teaDown"/>
-          <include name="eshopper2"/>
         </methods>
       </class> <!-- com.bit.test.SmokeTest -->
     </classes>

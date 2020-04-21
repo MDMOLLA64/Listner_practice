@@ -6,46 +6,46 @@ import org.testng.ITestResult;
 
 import kohls.utility.TakeAutoScreenshot;
 
-public class CustomListener extends BaseTest  implements ITestListener{
+public class CustomListener extends BaseTest implements ITestListener {
 
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onTestFailure(ITestResult result) {
-		
+
 		TakeAutoScreenshot.failedCaption(driver, result.getMethod().getMethodName());
-		
-		//TakeAutoScreenshot.capturefailed(driver, result.getMethod().getMethodName());
-		log.info("screenshotcaptured");
+
+		// TakeAutoScreenshot.capturefailed(driver, result.getMethod().getMethodName());
+		//logger.info(result.getMethod().getMethodName() + "---" + "screenshotcaptured");
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onStart(ITestContext context) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onFinish(ITestContext context) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
